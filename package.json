@@ -1,0 +1,21 @@
+{
+  "name": "coursebook",
+  "description": "Coursebook scraper",
+  "version": "0.0.0",
+  "dependencies": {},
+  "author": "Ian Macalinao <me@ian.pw>",
+  "repository": "simplyianm/coursebook",
+  "license": "MIT",
+  "keywords": [
+    "coursebook",
+    "coursebook",
+    "scraper"
+  ],
+  "scripts": {
+    "test": "./node_modules/.bin/mocha -R spec"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
+  }
+}
