@@ -19,13 +19,18 @@ module.exports = {
         var section = $(c1.children('a')[0]).text();
         var num = c1.clone().children().remove().end().text();
         var title = $($r[2]).text();
+        var instructors = [];
+        $($r[3]).children('a').each(function() {
+          instructors.push($(this).text().trim());
+        });
 
         ret.push({
           term: term,
           status: status,
           section: section,
           num: num,
-          title: title
+          title: title,
+          instructors: instructors
         });
       });
       return ret;
