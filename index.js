@@ -3,7 +3,10 @@ var request = require('superagent-bluebird-promise');
 
 var SEARCH_BASE = 'http://coursebook.utdallas.edu/search/searchresults/';
 
+var departments = require('./departments.json');
+
 module.exports = {
+  departments: departments,
   search: function(term, dept) {
     return request.get(SEARCH_BASE + 'term_' + term + '/cp_' + dept).promise().then(function(res) {
       var $ = cheerio.load(res.text);
@@ -52,4 +55,3 @@ module.exports = {
     });
   }
 };
-
