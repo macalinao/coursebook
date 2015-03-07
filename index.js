@@ -10,12 +10,18 @@ module.exports = {
       var ret = [];
       $('.section-list table tbody tr').each(function() {
         var $r = $(this).children('td');
-        var term = $($r[0]).clone().children().remove().end().text();
+        var c0 = $($r[0]);
         var c1 = $($r[1]);
+
+        // Parse
+        var term = c0.clone().children().remove().end().text();
+        var status = $(c0.children('span')[0]).text();
         var section = $(c1.children('a')[0]).text();
         var num = c1.clone().children().remove().end().text();
+
         ret.push({
           term: term,
+          status: status,
           section: section,
           num: num
         });
