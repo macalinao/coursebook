@@ -2,7 +2,12 @@
   "name": "coursebook",
   "description": "Coursebook scraper",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "bluebird": "^2.9.13",
+    "cheerio": "^0.18.0",
+    "superagent": "^0.21.0",
+    "superagent-bluebird-promise": "^1.1.0"
+  },
   "author": "Ian Macalinao <me@ian.pw>",
   "repository": "simplyianm/coursebook",
   "license": "MIT",
