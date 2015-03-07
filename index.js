@@ -17,6 +17,8 @@ module.exports = {
         var status = $(c0.children('span')[0]).text();
 
         var c1 = $($r[1]);
+        var idSplit = $(c1.children('a')[0]).attr('href').split('/');
+        var id = idSplit[idSplit.length - 1];
         var section = $(c1.children('a')[0]).text();
         var num = c1.clone().children().remove().end().text();
 
@@ -34,6 +36,7 @@ module.exports = {
         var fill = $($($r[5]).children('div')[0]).attr('title').split(' ')[0];
 
         ret.push({
+          id: id,
           term: term,
           status: status,
           section: section,
