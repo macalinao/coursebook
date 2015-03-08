@@ -1,12 +1,42 @@
+var fs = require('fs');
+
 var cheerio = require('cheerio');
 var request = require('superagent-bluebird-promise');
 
-var SEARCH_BASE = 'http://coursebook.utdallas.edu/search/searchresults/';
+var BASE = 'http://coursebook.utdallas.edu/';
+var DETAILS_BASE = BASE + 'clips/clip-section.zog';
+var SEARCH_BASE = BASE + 'search/searchresults/';
 
-var departments = require('./departments.json');
+var departments = fs.readFileSync('./departments.json', 'UTF-8').toString();
 
 module.exports = {
   departments: departments,
+
+  details: function(id) {
+    return request.get(BASE).promise().then(function(res) {
+      return request.post(DETAILS_BASE).send({
+        id: id,
+        div: 'r-lchildcontent',
+        subaction: null
+      }).set('Cookie', res.header['set-cookie'][0]).promise();
+    }).then(function(res) {
+      var $ = cheerio.load(res.text);
+      var $r = $('.section-detail table').children('tr');
+
+      var title = $($($r[0]).children('td')[0]).text();
+
+      // TODO parse after hackathon... this is gonna take forever.
+      var info = $($($r[1]).find('table tbody')[0]);
+
+      // Parse description
+      var desc = $($($r[3]).find('td')[0]).html();
+
+      return {
+        desc: desc
+      };
+    });
+  },
+
   search: function(term, dept) {
     return request.get(SEARCH_BASE + 'term_' + term + '/cp_' + dept).promise().then(function(res) {
       var $ = cheerio.load(res.text);
