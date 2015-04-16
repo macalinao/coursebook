@@ -2,6 +2,7 @@
   "name": "coursebook",
   "description": "Coursebook scraper",
   "version": "0.0.0",
+  "main": "lib/index.js",
   "dependencies": {
     "bluebird": "^2.9.13",
     "cheerio": "^0.18.0",
@@ -17,10 +18,10 @@
     "scraper"
   ],
   "scripts": {
-    "test": "./node_modules/.bin/mocha -R spec"
+    "compile": "babel src/ --out-dir lib/",
+    "prepublish": "npm run compile"
   },
   "devDependencies": {
-    "chai": "^1.10.0",
-    "mocha": "^2.1.0"
+    "babel": "^5.1.10"
   }
 }
